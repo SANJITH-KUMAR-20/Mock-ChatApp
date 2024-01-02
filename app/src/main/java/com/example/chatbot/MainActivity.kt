@@ -1,5 +1,6 @@
 package com.example.chatbot
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -49,21 +50,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun getApiKeyFromFile(filepath : String) : String{
-        val file = File(filepath)
-
-        if(!file.exists()){
-            throw IllegalArgumentException("File Does Not Exist: $filepath")
-        }
-        val buffRead = BufferedReader(FileReader(file))
-        val apiKey = buffRead.readLine().trim()
-        buffRead.close()
-
-        return apiKey
+    private fun getApiKeyFromFile(context : Context) : String{
+        val cont = R.string.api_key
+        return context.getString(cont)
     }
 
     private fun getResponse(question: String, callback: (String) -> Unit){
-    val api = getApiKeyFromFile("C:/Users/Hp/Desktop/apiKeys/OpenAi1.txt")
+    val api = getApiKeyFromFile(this)
+    Log.v("data",api)
     val post = "https://api.openai.com/v1/chat/completions"
 
     val requestBody = """
