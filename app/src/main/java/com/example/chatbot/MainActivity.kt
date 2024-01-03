@@ -1,10 +1,14 @@
 package com.example.chatbot
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
+import android.view.TouchDelegate
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -41,6 +45,19 @@ class MainActivity : ComponentActivity() {
         val sbt = findViewById<Button>(R.id.Submit)
         val txtResponse = findViewById<TextView>(R.id.Response)
 
+//        sbt.post{
+//            val area = Rect()
+//            sbt.getHitRect(area)
+//            area.top += 10
+//            area.bottom += 10
+//            area.left += 10
+//            area.right += 10
+//
+//            val touchDelegate = TouchDelegate(area,sbt)
+//            if (View :: class.isInstance(sbt.parent)){
+//                (sbt.parent as View).touchDelegate = touchDelegate
+//            }
+//        }
         sbt.setOnClickListener {
             val ques = question.text.toString()
             Toast.makeText(this,ques,Toast.LENGTH_LONG).show()
